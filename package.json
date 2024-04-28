@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "biome:check": "biome check ./src",
+    "biome:check-apply": "biome check --apply ./src",
+    "biome:check-apply-unsafe": "biome check --apply-unsafe ./src",
+    "b:cau": "bun biome:check-apply-unsafe",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^18",
@@ -14,11 +19,13 @@
     "next": "14.2.3"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@biomejs/biome": "1.7.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "husky": "^9.0.11",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
