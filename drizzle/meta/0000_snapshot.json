@@ -1,5 +1,5 @@
 {
-  "id": "ed27bed5-f7cd-41ac-9e2f-f4878cf5165e",
+  "id": "3587fe5c-13dc-4d07-9951-a3e3bb4f6377",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -18,19 +18,19 @@
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "title": {
           "name": "title",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "content": {
           "name": "content",
@@ -50,31 +50,45 @@
           "primaryKey": false,
           "notNull": false
         },
-        "author_id": {
-          "name": "author_id",
-          "type": "integer",
+        "slug": {
+          "name": "slug",
+          "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
+        },
+        "author_username": {
+          "name": "author_username",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "posts_author_id_users_id_fk": {
-          "name": "posts_author_id_users_id_fk",
+        "posts_author_username_users_username_fk": {
+          "name": "posts_author_username_users_username_fk",
           "tableFrom": "posts",
           "tableTo": "users",
           "columnsFrom": [
-            "author_id"
+            "author_username"
           ],
           "columnsTo": [
-            "id"
+            "username"
           ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "posts_slug_unique": {
+          "name": "posts_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      }
     },
     "public.users": {
       "name": "users",
@@ -90,13 +104,13 @@
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "name": {
           "name": "name",
@@ -108,7 +122,7 @@
           "name": "username",
           "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "avatar": {
           "name": "avatar",
@@ -126,13 +140,28 @@
           "name": "email",
           "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "users_username_unique": {
+          "name": "users_username_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "username"
+          ]
+        },
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      }
     }
   },
   "enums": {},

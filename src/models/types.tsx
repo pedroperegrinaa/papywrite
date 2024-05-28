@@ -1,19 +1,22 @@
-export interface Article {
+export interface Post {
 	id: number;
-	createdAt: string;
+	createdAt: Date;
+	updatedAt: Date;
+	description: string | null;
 	title: string;
-	content: string;
-	image: string;
-	description: string;
+	content: string | null;
+	image: string | null;
+	authorUsername: string;
+	slug: string;
 }
 
 export interface User {
-	id: string;
-	createdAt: string;
-	updaedAt: string;
-	name: string;
-	avatar: string;
+	id: number;
+	createdAt: Date;
+	updatedAt: Date;
+	name: string | null;
+	avatar: string | null;
 	username: string;
-	bio: string;
+	bio: string | null;
 	email: string;
 }
