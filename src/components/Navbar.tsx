@@ -94,9 +94,9 @@ export default async function Navbar() {
 
 					{/* <Input className='lg:block hidden bg-[#F5F5F5]' placeholder='Buscar conteúdo'/> */}
 
-					<Link href="/sign-in">
+					{/* <Link href="/sign-in">
 						<Button variant="outline">Sign In</Button>
-					</Link>
+					</Link> */}
 					<ModeToggle />
 					{/* <CartButton /> */}
 				</div>
