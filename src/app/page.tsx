@@ -13,14 +13,8 @@ export default async function Home() {
 
 	const client = postgres(connectionString);
 	const db = drizzle(client);
+
 	const allUsers = await db.select().from(users);
-
-	const getUsers: User[] = await fetch(
-		`${process.env.MOCKAPI_URL_BASE}/users`,
-	).then((res) => res.json());
-
-	console.log(getUsers);
-
 	const allPosts = await db.select().from(posts);
 
 	// const posts: Post[] = await fetch(
@@ -72,7 +66,7 @@ export default async function Home() {
 										{user.name}
 									</h3>
 									<p className="text-gray-600 dark:text-gray-400 text-sm">
-										{user.bio}
+										{user.role}
 									</p>
 								</div>
 							</Link>
@@ -108,7 +102,9 @@ export default async function Home() {
 									<p className="text-gray-600 dark:text-gray-400 mb-4">
 										{post.description?.trim().substring(0, 50)}...
 									</p>
-									<Button variant="link">Ler post</Button>
+									<Link href={`/profile/${post.authorUsername}/${post.slug}`}>
+										<Button variant="link">Ler post</Button>
+									</Link>
 								</div>
 							</div>
 						))}

@@ -73,7 +73,7 @@ export default async function page({ params }: { params: { slug: string[] } }) {
 							<Link
 								href={`/profile/${params.slug}/${post.slug}`}
 								key={post.id}
-								className="mx-auto flex flex-col hover:bg-slate-800 py-6 px-4 border-t-2"
+								className="mx-auto flex flex-col dark:hover:bg-slate-800 light:hover:bg-slate-400 py-6 px-4 border-t-2"
 							>
 								<TypographyH3>{post.title}</TypographyH3>
 
@@ -87,6 +87,19 @@ export default async function page({ params }: { params: { slug: string[] } }) {
 					<>
 						{params.slug[1] && (
 							<>
+								<Image
+									src={
+										allPosts.find((post: Post) => post.slug === params.slug[1])
+											?.image as string
+									}
+									alt={
+										allPosts.find((post: Post) => post.slug === params.slug[1])
+											?.title as string
+									}
+									width={1000}
+									height={100}
+									className="rounded-md object-cover h-[200px] w-full mb-8"
+								/>
 								<h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
 									{
 										allPosts.find((post: Post) => post.slug === params.slug[1])

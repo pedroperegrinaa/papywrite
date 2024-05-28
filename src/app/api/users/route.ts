@@ -25,6 +25,7 @@ export async function POST(request: Request) {
 			username: body.username,
 			avatar: body.avatar,
 			bio: body.bio,
+			role: body.role,
 			email: body.email,
 		})
 		.returning();
