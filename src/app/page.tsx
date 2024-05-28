@@ -9,8 +9,7 @@ import postgres from "postgres";
 import { users } from "@/db/schema";
 
 export default async function Home() {
-	const connectionString = process.env
-		.NEXT_PUBLIC_SUPABASE_DATABASE_URL as string;
+	const connectionString = process.env.SUPABASE_DATABASE_URL as string;
 
 	const client = postgres(connectionString);
 	const db = drizzle(client);
