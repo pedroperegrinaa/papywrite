@@ -1,11 +1,22 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import type { Article, User } from "@/models/types";
 
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+
+import { users } from "@/db/schema";
+
 export default async function Home() {
-	const users: User[] = await fetch(
+	const connectionString = process.env
+		.NEXT_PUBLIC_SUPABASE_DATABASE_URL as string;
+
+	const client = postgres(connectionString);
+	const db = drizzle(client);
+	const allUsers = await db.select().from(users);
+
+	const getUsers: User[] = await fetch(
 		`${process.env.MOCKAPI_URL_BASE}/users`,
 	).then((res) => res.json());
 
@@ -37,7 +48,7 @@ export default async function Home() {
 						Featured Authors
 					</h2>
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-						{users.slice(0, 4).map((user) => (
+						{getUsers.slice(0, 4).map((user) => (
 							<Link key={user.id} href={`/profile/${user.id}`}>
 								<div
 									key={user.id}

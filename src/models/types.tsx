@@ -10,8 +10,10 @@ export interface Article {
 export interface User {
 	id: string;
 	createdAt: string;
+	updaedAt: string;
 	name: string;
 	avatar: string;
 	username: string;
 	bio: string;
+	email: string;
 }
