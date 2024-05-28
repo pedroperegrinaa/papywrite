@@ -32,7 +32,7 @@ export default async function page({ params }: { params: { slug: string[] } }) {
 	return (
 		<>
 			{params.slug.length === 1 && (
-				<div className="flex w-2/4 mx-auto justify-between mb-8 px-4">
+				<div className="flex w-4/5 md:w-3/5 mx-auto justify-between mb-8 px-4">
 					<div>
 						<TypographyH1>{userData.name}</TypographyH1>
 						<p className="mb-4">
@@ -55,10 +55,10 @@ export default async function page({ params }: { params: { slug: string[] } }) {
 				</div>
 			)}
 
-			<div className="mx-auto w-2/4 mb-28">
+			<div className="mx-auto w-4/5 md:w-3/5 mb-28">
 				{params.slug.length === 1 ? (
 					<>
-						<TypographyH2 className="mb-8 px-4">Articles</TypographyH2>
+						<TypographyH2 className="mb-8 px-4">Artigos</TypographyH2>
 						{articles.map((post) => (
 							<Link
 								href={`/profile/${params.slug}/${post.id}`}
