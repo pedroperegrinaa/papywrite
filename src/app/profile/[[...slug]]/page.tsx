@@ -7,7 +7,6 @@ import {
 	TypographyInlineCode,
 	TypographySmall,
 } from "@/components/Typography";
-import { Separator } from "@/components/ui/separator";
 import type { Article, User } from "@/models/types";
 import Image from "next/image";
 import Link from "next/link";

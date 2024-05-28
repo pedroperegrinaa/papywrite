@@ -3,6 +3,8 @@ export interface Article {
 	createdAt: string;
 	title: string;
 	content: string;
+	image: string;
+	description: string;
 }
 
 export interface User {
